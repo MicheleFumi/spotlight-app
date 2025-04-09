@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants/theme";
 import { useSSO } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
+
 export default function login() {
   const { startSSOFlow } = useSSO();
   const router = useRouter();
