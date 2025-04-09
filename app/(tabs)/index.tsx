@@ -1,5 +1,5 @@
 import { Image, Text, View, TouchableOpacity } from "react-native";
-import styles from "../../styles/auth.styles.js";
+import { styles } from "../../styles/auth.styles.ts";
 import { useAuth } from "@clerk/clerk-expo";
 
 export default function Index() {
@@ -7,7 +7,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => signOut()}>
-        <Text>signout</Text>
+        <Text style={{ color: "white", flex: 1, justifyContent: "center" }}>
+          signout
+        </Text>
       </TouchableOpacity>
     </View>
   );
