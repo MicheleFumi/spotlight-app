@@ -5,6 +5,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   ActivityIndicator,
+  ScrollView,
+  TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { styles } from "../../styles/create.styles";
@@ -13,6 +15,7 @@ import { useUser } from "@clerk/clerk-expo";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { COLORS } from "@/constants/theme";
+import { Image } from "expo-image";
 export default function CreateScreen() {
   const router = useRouter();
   const { user } = useUser();
@@ -33,12 +36,12 @@ export default function CreateScreen() {
   if (!selectedImage) {
     return (
       <>
-        <view style={styles.container}>
+        <View style={styles.container}>
           <View style={styles.header}>
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="arrow-back" size={28} color={COLORS.primary} />
             </TouchableOpacity>
-            <text style={styles.headerTitle}>New Post</text>
+            <Text style={styles.headerTitle}>New Post</Text>
             <View style={{ width: 28 }} />
           </View>
 
@@ -47,9 +50,9 @@ export default function CreateScreen() {
             onPress={pickImage}
           >
             <Ionicons name="image-outline" size={48} color={COLORS.grey} />
-            <text style={styles.emptyImageText}>Tap to select an image</text>
+            <Text style={styles.emptyImageText}>Tap to select an image</Text>
           </TouchableOpacity>
-        </view>
+        </View>
       </>
     );
   }
@@ -82,7 +85,7 @@ export default function CreateScreen() {
               isSharing && styles.shareButtonDisabled,
             ]}
             disabled={isSharing || !selectedImage}
-            onPress={handleShare}
+            /*  onPress={handleShare} */
           >
             {isSharing ? (
               <ActivityIndicator size="small" color={COLORS.primary} />
@@ -91,6 +94,52 @@ export default function CreateScreen() {
             )}
           </TouchableOpacity>
         </View>
+
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          bounces={false}
+          keyboardShouldPersistTaps="handled"
+          contentOffset={{ x: 0, y: 100 }}
+        >
+          <View style={[styles.content, isSharing && styles.contentDisabled]}>
+            <Image
+              source={selectedImage}
+              style={styles.previewImage}
+              contentFit="cover"
+              transition={200}
+            />
+            <TouchableOpacity
+              style={styles.changeImageButton}
+              onPress={pickImage}
+              disabled={isSharing}
+            >
+              <Ionicons name="image-outline" size={20} color={COLORS.white} />
+              <Text style={styles.changeImageText}>Change</Text>
+            </TouchableOpacity>
+            <View style={[styles.content, isSharing && styles.contentDisabled]}>
+              {/* INPUT SECTION */}
+              <View style={styles.inputSection}>
+                <View style={styles.captionContainer}>
+                  <Image
+                    source={user?.imageUrl}
+                    style={styles.userAvatar}
+                    contentFit="cover"
+                    transition={200}
+                  />
+                  <TextInput
+                    style={styles.captionInput}
+                    placeholder="Write a caption..."
+                    placeholderTextColor={COLORS.grey}
+                    multiline
+                    value={caption}
+                    onChangeText={setCaption}
+                    editable={!isSharing}
+                  />
+                </View>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </KeyboardAvoidingView>
   );
