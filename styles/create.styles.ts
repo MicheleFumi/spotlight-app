@@ -71,11 +71,11 @@ export const styles = StyleSheet.create({
   },
   previewImage: {
     width: "100%",
-    height: "50%",
+    height: "100%",
   },
   changeImageButton: {
     position: "absolute",
-    top: 300,
+    bottom: 16,
     right: 16,
     backgroundColor: "rgba(0, 0, 0, 0.75)",
     flexDirection: "row",
