@@ -32,7 +32,7 @@ export default function login() {
         <View style={styles.logoContainer}>
           <Ionicons name="infinite-sharp" size={32} color={COLORS.primary} />
         </View>
-        <Text style={styles.appName}>SpaceCake</Text>
+        <Text style={styles.appName}>SpaceCAKE</Text>
         <Text style={styles.tagline}>Embrace FOMO</Text>
       </View>
       <Image
