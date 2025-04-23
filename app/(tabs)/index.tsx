@@ -27,7 +27,10 @@ export default function Index() {
         </TouchableOpacity>
       </View>
       {/* STORIES SECTION (NOT-WORKING-REALLY) */}
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 60 }}
+      >
         {/* STORIES */}
         <ScrollView
           horizontal

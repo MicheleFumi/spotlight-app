@@ -109,7 +109,7 @@ export const styles = StyleSheet.create({
   captionContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginBottom: 6,
+    marginBottom: 0,
   },
   captionUsername: {
     fontSize: 14,
@@ -129,7 +129,7 @@ export const styles = StyleSheet.create({
   },
   timeAgo: {
     fontSize: 12,
-    color: COLORS.grey,
+    color: COLORS.primary,
     marginBottom: 8,
   },
   modalContainer: {
@@ -177,7 +177,7 @@ export const styles = StyleSheet.create({
     marginBottom: 4,
   },
   commentText: {
-    color: COLORS.white,
+    color: COLORS.grey,
     fontSize: 14,
     lineHeight: 20,
   },
